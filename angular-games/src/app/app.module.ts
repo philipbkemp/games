@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { AppConfigService } from "@app/services/config.service";
 
+import { HomeComponent } from "@app/home/home.component";
+import { GameRpsComponent } from "@app/rps/rps.component";
+
 export function appConfigInit(config:AppConfigService) {
 	return() => {
 		return config.load();
@@ -14,7 +17,9 @@ export function appConfigInit(config:AppConfigService) {
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		HomeComponent,
+		GameRpsComponent
 	],
 	imports: [
 		BrowserModule,

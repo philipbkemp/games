@@ -1,0 +1,25 @@
+<div class="container-fluid bg-blue">
+	<div class="row">
+		<div class="col-12 text-center py-4">
+			<h1>{{ 'games.title' | transloco }}</h1>
+		</div>
+	</div>
+</div>
+<div class="container pt-5 pb-5">
+	<div class="row row-cols-1 row-cols-md-4 g-4">
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<a class="card-body" [routerLink]="'rps'">
+					<div class="card-header">
+						{{ 'games.rps' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-scissors fa-6x"></i>
+					</div>
+				</a>
+			</div>
+		</div>
+
+	</div>
+</div>
