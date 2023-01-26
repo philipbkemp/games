@@ -1,0 +1,28 @@
+.card.game-card {
+	border-color: $blue;
+	.card-body {
+		background-color: white;
+		border: none;
+		border-radius: 0.375rem;
+		color: $blue;
+		padding: 0;
+		text-align: center;
+		text-decoration: none;
+		&:hover,
+		&.no-hover {
+			background: $blue-hover;
+		}
+		.card-header {
+			background: $blue-hover;
+			border-bottom: 0;
+			font-size: 1.4rem;
+			font-weight: bold;
+		}
+		.card-text {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			min-height: 151px;
+		}
+	}
+}
