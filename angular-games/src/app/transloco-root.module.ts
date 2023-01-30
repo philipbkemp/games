@@ -9,13 +9,14 @@ import {
 } from '@ngneat/transloco';
 import { Injectable, NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
+import { AppConfigService } from "@app/services/config.service";
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient,private config: AppConfigService) {}
 
 	getTranslation(lang: string) {
-		return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+		return this.http.get<Translation>(`${this.config.buildPath}/assets/i18n/${lang}.json`);
 	}
 }
 

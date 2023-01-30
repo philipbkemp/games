@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppConfigService {
 
-	public cookiePrefix:string = "bar";
+	public buildPath:string = "";
 
 	constructor(
 		private http: HttpClient
