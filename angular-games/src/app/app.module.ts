@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { AppConfigService } from "@app/services/config.service";
+import { NgxPiwikProModule, NgxPiwikProRouterModule  } from '@piwikpro/ngx-piwik-pro';
 
 import { HomeComponent } from "@app/home/home.component";
 import { GameRpsComponent } from "@app/rps/rps.component";
@@ -25,7 +26,9 @@ export function appConfigInit(config:AppConfigService) {
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
-		TranslocoRootModule
+		TranslocoRootModule,
+		NgxPiwikProModule.forRoot('2b7b273d-ff1f-4a5d-901c-2fa83b86c8e5', 'https://philipbkemp.containers.piwik.pro'),
+		NgxPiwikProRouterModule.forRoot()
 	],
 	providers: [
 		{
