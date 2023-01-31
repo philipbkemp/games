@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppConfigService } from "@app/services/config.service";
 import { CookieService } from "@app/services/cookie.service";
 import { TRANSLOCO_SCOPE } from "@ngneat/transloco";
@@ -13,7 +13,7 @@ import { Title } from "@angular/platform-browser";
 		useValue: "rps"
 	}]
 })
-export class GameRpsComponent implements OnInit {
+export class GameRpsComponent implements OnInit, OnDestroy {
 
 	userWins = 0;
 	aiWins = 0;
@@ -21,6 +21,7 @@ export class GameRpsComponent implements OnInit {
 	gamesPlayed = 0;
 
 	waitingUser: boolean = true;
+	showingScore: boolean = false;
 
 	userChoice: number = -1;
 	aiChoice: number = -1;
@@ -33,6 +34,8 @@ export class GameRpsComponent implements OnInit {
 	resDraw: boolean = false;
 	resLose: boolean = false;
 
+	nextRoundWaiter:any = null;
+
 	constructor(
 		private config: AppConfigService,
 		private cookie: CookieService,
@@ -44,6 +47,9 @@ export class GameRpsComponent implements OnInit {
 		this.waitingUser = true;
 		this.titleService.setTitle("Phil's Angular Game Room | Rock Paper Scissors");
 	}
+	ngOnDestroy() {
+		if ( this.nextRoundWaiter ) { clearTimeout(this.nextRoundWaiter); }
+	}
 
 	choiceToString(choice:number):string {
 		switch (choice) {
@@ -54,7 +60,17 @@ export class GameRpsComponent implements OnInit {
 		return "";
 	}
 
+	nextRound() {
+		if ( this.nextRoundWaiter ) { clearTimeout(this.nextRoundWaiter); }
+		if ( ! this.showingScore === true ) {
+			return;
+		}
+		this.waitingUser = true;
+		this.showingScore = false;
+	}
+
 	userChoose(weapon:number) {
+		this.showingScore = true;
 		this.waitingUser = false;
 
 		this.resWin = false;
@@ -116,6 +132,6 @@ export class GameRpsComponent implements OnInit {
 			this.draws++;
 		}
 
-		setTimeout( ()=> {this.waitingUser=true}, 3000);
+		this.nextRoundWaiter = setTimeout( ()=> {this.nextRound()}, 3000);
 	}
 }
