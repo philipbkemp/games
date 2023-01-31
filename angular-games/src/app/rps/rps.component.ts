@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppConfigService } from "@app/services/config.service";
 import { CookieService } from "@app/services/cookie.service";
 import { TRANSLOCO_SCOPE } from "@ngneat/transloco";
+import { Title } from "@angular/platform-browser";
 
 @Component({
 	selector: 'app-rps',
@@ -34,12 +35,14 @@ export class GameRpsComponent implements OnInit {
 
 	constructor(
 		private config: AppConfigService,
-		private cookie: CookieService
+		private cookie: CookieService,
+		private titleService: Title
 	) {
 	}
 
 	ngOnInit() {
 		this.waitingUser = true;
+		this.titleService.setTitle("Phil's Angular Game Room | Rock Paper Scissors");
 	}
 
 	choiceToString(choice:number):string {
