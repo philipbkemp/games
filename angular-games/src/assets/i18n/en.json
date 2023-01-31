@@ -3,19 +3,5 @@
 	"games": {
 		"rps": "Rock, Paper, Scissors",
 		"title": "Welcome to the game room!"
-	},
-	"rps": {
-		"ai": "The computer chose",
-		"choose": "Choose your weapon!",
-		"draw": "Draw: {{i}}",
-		"loss": "Loss: {{i}}",
-		"paper": "Paper",
-		"rock": "Rock",
-		"scissors": "Scissors",
-		"user": "You chose",
-		"win": "Win: {{i}}",
-		"youdraw": "It was a draw",
-		"youlose": "You lost",
-		"youwin": "You win!"
 	}
 }

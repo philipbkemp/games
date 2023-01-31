@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfigService } from "@app/services/config.service";
 import { CookieService } from "@app/services/cookie.service";
+import { TRANSLOCO_SCOPE } from "@ngneat/transloco";
 
 @Component({
 	selector: 'app-rps',
 	templateUrl: './rps.component.html',
-	styleUrls: ['./rps.component.scss']
+	styleUrls: ['./rps.component.scss'],
+	providers: [{
+		provide: TRANSLOCO_SCOPE,
+		useValue: "rps"
+	}]
 })
 export class GameRpsComponent implements OnInit {
 
@@ -35,6 +40,15 @@ export class GameRpsComponent implements OnInit {
 
 	ngOnInit() {
 		this.waitingUser = true;
+	}
+
+	choiceToString(choice:number):string {
+		switch (choice) {
+			case this.PAPER: return "paper"; break;
+			case this.ROCK: return "rock"; break;
+			case this.SCISSORS: return "scissors"; break;
+		}
+		return "";
 	}
 
 	userChoose(weapon:number) {

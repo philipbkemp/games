@@ -126,9 +126,15 @@
 			</div>
 		</div>
 		<div class="col-12 text-center fa-2x mt-2">
-			<strong *ngIf="resWin">{{ 'rps.youwin' | transloco }}</strong>
-			<strong *ngIf="resDraw">{{ 'rps.youdraw' | transloco }}</strong>
-			<strong *ngIf="resLose">{{ 'rps.youlose' | transloco }}</strong>
+			<div
+				class="alert"
+				[class.bg-success]="resWin"
+				[class.bg-danger]="resLose"
+				[class.bg-secondary]="resDraw"
+				>
+				<span *ngIf="userChoice === aiChoice">{{ 'rps.results.draw' | transloco }}</span>
+				<span *ngIf="userChoice !== aiChoice">{{ 'rps.results.'+choiceToString(userChoice)+"."+choiceToString(aiChoice) | transloco }}</span>
+			</div>
 		</div>
 	</div>
 

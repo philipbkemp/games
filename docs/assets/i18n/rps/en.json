@@ -1,0 +1,26 @@
+{
+	"ai": "The computer chose",
+	"choose": "Choose your weapon!",
+	"draw": "Draw: {{i}}",
+	"loss": "Loss: {{i}}",
+	"paper": "Paper",
+	"results": {
+		"draw": "Draw",
+		"paper": {
+			"rock": "Paper covers Rock",
+			"scissors": "Paper cut by Scissors"
+		},
+		"rock": {
+			"paper": "Rock covered by Paper",
+			"scissors": "Rock crushes Scissors"
+		},
+		"scissors": {
+			"paper": "Scissors cut Paper",
+			"rock": "Scissors crushed by Rock"
+		}
+	},
+	"rock": "Rock",
+	"scissors": "Scissors",
+	"user": "You chose",
+	"win": "Win: {{i}}"
+}
