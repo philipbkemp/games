@@ -1,17 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppConfigService } from "@app/services/config.service";
 import { CookieService } from "@app/services/cookie.service";
-import { TRANSLOCO_SCOPE } from "@ngneat/transloco";
+import { TRANSLOCO_SCOPE, TranslocoService } from "@ngneat/transloco";
 import { Title } from "@angular/platform-browser";
+import { TrophyService } from "@app/services/trophy.service";
+import { MessageService } from "primeng/api";
 
 @Component({
 	selector: 'app-rps',
 	templateUrl: './rps.component.html',
 	styleUrls: ['./rps.component.scss'],
-	providers: [{
-		provide: TRANSLOCO_SCOPE,
-		useValue: "rps"
-	}]
+	providers: [
+		{provide: TRANSLOCO_SCOPE,useValue: "rps"},
+		MessageService
+	]
 })
 export class GameRpsComponent implements OnInit, OnDestroy {
 
@@ -36,19 +38,39 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 
 	nextRoundWaiter:any = null;
 
+	rockWins: number = 0;
+	paperWins: number = 0;
+	scissorWins: number = 0;
+	winStreak: number = 0;
+	drawStreak: number = 0;
+	loseStreak: number = 0;
+
+	showTrophiesModalButton: boolean = false;
+
 	constructor(
 		private config: AppConfigService,
 		private cookie: CookieService,
-		private titleService: Title
+		private titleService: Title,
+		public trophy: TrophyService,
+		private translate: TranslocoService,
+		private msg: MessageService
 	) {
 	}
 
 	ngOnInit() {
 		this.waitingUser = true;
 		this.titleService.setTitle("Phil's Angular Game Room | Rock Paper Scissors");
+		this.showTrophiesModalButton = this.trophy.getTrophiesEarned("rps") !== 0;
 	}
 	ngOnDestroy() {
 		if ( this.nextRoundWaiter ) { clearTimeout(this.nextRoundWaiter); }
+		/* trophy check */
+		if ( this.gamesPlayed !== 0 && this.userWins === this.gamesPlayed ) {
+			this.winTrophy("e");
+		}
+		if ( this.gamesPlayed !== 0 && this.aiWins === this.gamesPlayed ) {
+			this.winTrophy("j");
+		}
 	}
 
 	choiceToString(choice:number):string {
@@ -132,6 +154,77 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 			this.draws++;
 		}
 
+		/* trophy check */
+		if ( this.gamesPlayed === 1 ) {
+			this.winTrophy("a");
+		} else if ( this.gamesPlayed === 50 ) {
+			this.winTrophy("i");
+		}
+		if ( this.resWin ) {
+			this.winStreak++;
+			this.drawStreak = 0;
+			this.loseStreak = 0;
+			if ( this.userChoice === this.ROCK ) {
+				this.rockWins++;
+				if ( this.rockWins === 5 ) {
+					this.winTrophy("b");
+				}
+			}
+			if ( this.userChoice === this.PAPER ) {
+				this.paperWins++;
+				if ( this.paperWins === 5 ) {
+					this.winTrophy("c");
+				}
+			}
+			if ( this.userChoice === this.SCISSORS ) {
+				this.scissorWins++;
+				if ( this.scissorWins === 5 ) {
+					this.winTrophy("d");
+				}
+			}
+			if ( this.winStreak === 5 ) {
+				this.winTrophy("f");
+			}
+		} else if ( this.resLose ) {
+			this.loseStreak++;
+			this.winStreak = 0;
+			this.drawStreak = 0;
+			if ( this.loseStreak === 5 ) {
+				this.winTrophy("g");
+			}
+		} else if ( this.resDraw ) {
+			this.drawStreak++;
+			this.winStreak = 0;
+			this.loseStreak = 0;
+			if ( this.drawStreak === 5 ) {
+				this.winTrophy("h");
+			}
+		}
+
 		this.nextRoundWaiter = setTimeout( ()=> {this.nextRound()}, 3000);
+	}
+
+	winTrophy(trophy:string) {
+		if ( this.trophy.earnTrophy("rps",trophy) ) {
+			this.showTrophiesModalButton = true;
+			let tMsg = this.translate.translate("rps.trophy."+trophy).split("|");
+			if ( ["e","j"].indexOf(trophy) === -1 ) {
+				this.msg.add({
+					closable: false,
+					detail: tMsg[1],
+					life: 3000,
+					severity: "success",
+					summary: tMsg[0]
+				});
+			} else {
+				localStorage.setItem("pbkgame.trophy",tMsg.join("|"));
+			}
+		}
+	}
+
+	showTrophiesModal: boolean = false;
+
+	toggleTrophies() {
+		this.showTrophiesModal = true;
 	}
 }

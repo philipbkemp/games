@@ -3,5 +3,12 @@
 	"games": {
 		"rps": "Rock, Paper, Scissors",
 		"title": "Welcome to the game room!"
+	},
+	"trophies": "Trophies",
+	"trophy": {
+		"unknown": {
+			"desc": "Play more to unlock this trophy",
+			"title": "- Unknown Trophy -"
+		}
 	}
 }

@@ -21,6 +21,18 @@
 	},
 	"rock": "Rock",
 	"scissors": "Scissors",
+	"trophy": {
+		"a": "Snick, Snack, Snook|Played your first Rock Paper Scissors Game",
+		"b": "You Rock!|Win 5 games with Rock",
+		"c": "Papers Please|Win 5 games with Paper",
+		"d": "A Cut Above The Rest|Win 5 games with Scissors",
+		"e": "Undefeated Champion Of The Universe|Quit Rock Paper Scissors without losing",
+		"f": "On Fire!|Win 5 games in a row",
+		"g": "Not At My Best|Lose 5 games in a row",
+		"h": "Art Class|Draw 5 games in a row",
+		"i": "Long Term Student|Play 50 games",
+		"j": "Quitter|Quit Rock Paper Scissors because you lost every round"
+	},
 	"user": "You chose",
 	"win": "Win: {{i}}"
 }

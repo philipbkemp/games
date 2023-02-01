@@ -17,9 +17,37 @@
 					<div class="card-text">
 						<i class="fa-regular fa-hand-scissors fa-6x"></i>
 					</div>
+					<div class="card-trophy">
+						<div class="progress" *ngIf="trophies_rsp !== 0">
+							<div
+								class="progress-bar"
+								role="progressbar" 
+								[attr.aria-label]="'games.rps' | transloco" 
+								[attr.style]="'width: '+trophies_rsp+'%'"
+								[attr.aria-valuenow]="trophies_rsp"
+								aria-valuemin="0"
+								aria-valuemax="100"></div>
+						</div>
+					</div>
 				</a>
 			</div>
 		</div>
 
 	</div>
 </div>
+
+<p-toast position="top-center">
+	<ng-template let-message pTemplate="message">
+        <div class="flex flex-column" style="flex: 1">
+            <div class="row">
+            	<div class="col-3 text-center">
+                	<i class="fa-solid fa-trophy fa-3x"></i>
+                </div>
+                <div class="col">
+                	<h4>{{message.summary}}</h4>
+                	<p class="mb-0">{{message.detail}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

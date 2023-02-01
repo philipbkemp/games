@@ -2,8 +2,11 @@
 	<div class="row">
 		<div class="col-12 text-center py-4">
 			<a [routerLink]="''" class="btn btn-outline-primary float-start mt-2">
-				<i class="fa-solid fa-chevron-left"></i> {{ 'back' | transloco }}
+				<i class="fa-solid fa-chevron-left me-1"></i> {{ 'back' | transloco }}
 			</a>
+			<button class="btn btn-outline-primary float-end mt-2" (click)="toggleTrophies()" *ngIf="showTrophiesModalButton">
+				<i class="fa-solid fa-trophy me-1"></i> {{ 'trophies' | transloco }}
+			</button>
 			<h1>{{ 'games.rps' | transloco }}</h1>
 		</div>
 	</div>
@@ -140,3 +143,57 @@
 	</div>
 
 </div>
+
+<p-toast position="top-center">
+	<ng-template let-message pTemplate="message">
+        <div class="flex flex-column" style="flex: 1">
+            <div class="row">
+            	<div class="col-3 text-center">
+                	<i class="fa-solid fa-trophy fa-3x"></i>
+                </div>
+                <div class="col">
+                	<h4>{{message.summary}}</h4>
+                	<p class="mb-0">{{message.detail}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<p-dialog
+	[header]="'trophies'|transloco"
+	[(visible)]="showTrophiesModal"
+	[draggable]="false"
+	[resizable]="false"
+	[modal]="true"
+	[blockScroll]="true"
+	[style]="{width:'90vw'}"
+	>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+
+		<div class="col" *ngFor="let t of ['a','b','c','d','e','f','g','h','i','j']">
+			<div class="card h-100 trophy" [class.trophy-earned]="trophy.hasTrophy('rps',t)">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 text-center">
+							<i class="fa-solid fa-trophy fa-2x"></i>
+						</div>
+						<ng-container *ngIf="trophy.hasTrophy('rps',t); else notFound">
+							<div class="col">
+								<strong>{{ 'rps.trophy.'+t | transloco |trophy:0 }}</strong>
+								<p class="mb-0">{{ 'rps.trophy.'+t | transloco |trophy:1 }}</p>
+							</div>
+						</ng-container>
+						<ng-template #notFound>
+							<div class="col">
+								<strong>{{ 'trophy.unknown.title' | transloco }}</strong>
+								<p class="mb-0">{{ 'trophy.unknown.desc' | transloco }}</p>
+							</div>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</p-dialog>

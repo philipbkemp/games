@@ -29,9 +29,10 @@
 }
 
 @media(max-width:520px) {
-    a.float-start {
-        float: none !important;
+    a.float-start,
+    button.float-end {
         margin-bottom: 10px;
+        width: calc( 50% - 10px );
     }
     .fa-6x {
         font-size: 3rem;
@@ -55,4 +56,37 @@
 	right: 0;
 	top: 0;
 	z-index: 999;
+}
+
+.card.trophy {
+	border: 1px solid $grey;
+	min-height: 75px;
+	.card-body {
+		padding: 0;
+		.row {
+			margin: 0;
+			> :first-child {
+				align-items: center;
+				background-color: $super-light-grey;
+				border-radius: .25rem 0 0 .25rem;
+				color: $grey;
+				display: flex;
+				height: 74px;
+				justify-content: center;
+			}
+			> :last-child {
+				color: $grey;
+			}
+		}
+	}
+	&.trophy-earned {
+		border-color: $success;
+		.card-body .row > :first-child {
+			background-color: $success-shadow;
+			color: $success;
+		}
+		.card-body .row > :last-child {
+			color: initial;
+		}
+	}
 }
