@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { CookieService } from "@app/services/cookie.service";
-import { CustomEventsService } from "@piwikpro/ngx-piwik-pro";
 
 @Injectable({
 	providedIn: "root"
@@ -8,8 +7,7 @@ import { CustomEventsService } from "@piwikpro/ngx-piwik-pro";
 export class TrophyService {
 
 	constructor(
-		private cookie: CookieService,
-		private ces: CustomEventsService
+		private cookie: CookieService
 	) {}
 
 	earnTrophy(game:string, trophyCode:string) {
@@ -17,12 +15,12 @@ export class TrophyService {
 		if ( gameCookie ) {
 			if ( gameCookie.indexOf(trophyCode) === -1 ) {
 				this.cookie.cookieSet("pbkgame."+game,gameCookie+""+trophyCode);
-				this.ces.trackEvent(game+" trophy",trophyCode);
+				//this.ces.trackEvent(game+" trophy",trophyCode);
 				return true;
 			}
 		} else {
 			this.cookie.cookieSet("pbkgame."+game,trophyCode);
-			this.ces.trackEvent(trophyCode+" trophy",trophyCode);
+			//this.ces.trackEvent(game+" trophy",trophyCode);
 			return true;
 		}
 		return false;

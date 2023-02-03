@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { AppConfigService } from "@app/services/config.service";
-import { NgxPiwikProModule, NgxPiwikProRouterModule  } from '@piwikpro/ngx-piwik-pro';
 import { ToastModule } from "primeng/toast";
 import { DialogModule } from "primeng/dialog";
 import { TrophyPipe } from "@app/pipes/trophy.pipe";
@@ -32,8 +31,6 @@ export function appConfigInit(config:AppConfigService) {
 		AppRoutingModule,
 		HttpClientModule,
 		TranslocoRootModule,
-		NgxPiwikProModule.forRoot('2b7b273d-ff1f-4a5d-901c-2fa83b86c8e5', 'https://philipbkemp.containers.piwik.pro'),
-		NgxPiwikProRouterModule.forRoot(),
 		ToastModule,
 		BrowserAnimationsModule,
 		DialogModule
