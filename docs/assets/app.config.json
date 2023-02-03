@@ -1,3 +1,4 @@
 {
-	"buildPath": "/games"
+	"buildPath": "/games",
+	"trackPath": "http://www.philipbkemp.net/api/ping"
 }

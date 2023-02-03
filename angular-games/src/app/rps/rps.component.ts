@@ -5,6 +5,7 @@ import { TRANSLOCO_SCOPE, TranslocoService } from "@ngneat/transloco";
 import { Title } from "@angular/platform-browser";
 import { TrophyService } from "@app/services/trophy.service";
 import { MessageService } from "primeng/api";
+import { TrackerService } from "@app/services/tracker.service";
 
 @Component({
 	selector: 'app-rps',
@@ -53,7 +54,8 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 		private titleService: Title,
 		public trophy: TrophyService,
 		private translate: TranslocoService,
-		private msg: MessageService
+		private msg: MessageService,
+		private tracker: TrackerService
 	) {
 	}
 
@@ -61,6 +63,7 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 		this.waitingUser = true;
 		this.titleService.setTitle("Phil's Angular Game Room | Rock Paper Scissors");
 		this.showTrophiesModalButton = this.trophy.getTrophiesEarned("rps") !== 0;
+		this.tracker.trackPageView("/rps");
 	}
 	ngOnDestroy() {
 		if ( this.nextRoundWaiter ) { clearTimeout(this.nextRoundWaiter); }

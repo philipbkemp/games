@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CookieService } from "@app/services/cookie.service";
+import { TrackerService } from "@app/services/tracker.service";
 
 @Injectable({
 	providedIn: "root"
@@ -7,7 +8,8 @@ import { CookieService } from "@app/services/cookie.service";
 export class TrophyService {
 
 	constructor(
-		private cookie: CookieService
+		private cookie: CookieService,
+		private tracker: TrackerService
 	) {}
 
 	earnTrophy(game:string, trophyCode:string) {
@@ -15,12 +17,14 @@ export class TrophyService {
 		if ( gameCookie ) {
 			if ( gameCookie.indexOf(trophyCode) === -1 ) {
 				this.cookie.cookieSet("pbkgame."+game,gameCookie+""+trophyCode);
+				this.tracker.trackTrophy(game,trophyCode);
 				//this.ces.trackEvent(game+" trophy",trophyCode);
 				return true;
 			}
 		} else {
 			this.cookie.cookieSet("pbkgame."+game,trophyCode);
 			//this.ces.trackEvent(game+" trophy",trophyCode);
+			this.tracker.trackTrophy(game,trophyCode);
 			return true;
 		}
 		return false;

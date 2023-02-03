@@ -1,3 +1,4 @@
 {
-	"buildPath": ""
+	"buildPath": "",
+	"trackPath": "http://localhost:8921/api/ping"
 }

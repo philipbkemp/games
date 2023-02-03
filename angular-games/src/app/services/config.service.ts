@@ -6,7 +6,8 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppConfigService {
 
-	public buildPath:string = "";
+	public buildPath: string = "";
+	public trackPath: string = "";
 
 	constructor(
 		private http: HttpClient

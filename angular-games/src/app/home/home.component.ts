@@ -4,6 +4,7 @@ import { CookieService } from "@app/services/cookie.service";
 import { Title } from "@angular/platform-browser";
 import { MessageService } from "primeng/api";
 import { TrophyService } from "@app/services/trophy.service";
+import { TrackerService } from "@app/services/tracker.service";
 
 @Component({
 	selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
 		private cookie: CookieService,
 		private titleService: Title,
 		private msg: MessageService,
-		private trophy: TrophyService
+		private trophy: TrophyService,
+		private tracker: TrackerService
 	) {
 	}
 
@@ -41,6 +43,8 @@ export class HomeComponent implements OnInit {
 				localStorage.removeItem("pbkgame.trophy");
 			},100);
 		}
+
+		this.tracker.trackPageView("/");
 
 		this.getTrophies();
 	}
