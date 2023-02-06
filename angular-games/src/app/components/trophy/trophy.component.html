@@ -1,0 +1,41 @@
+<button class="btn btn-outline-primary float-end mt-2" (click)="toggleTrophies()" *ngIf="button">
+	<i class="fa-solid fa-trophy me-1"></i> {{ 'trophies' | transloco }}
+</button>
+
+<p-dialog
+	[header]="'trophies'|transloco"
+	[(visible)]="showTrophiesModal"
+	[draggable]="false"
+	[resizable]="false"
+	[modal]="true"
+	[blockScroll]="true"
+	[style]="{width:'90vw'}"
+	>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+
+		<div class="col" *ngFor="let t of trophyList">
+			<div class="card h-100 trophy" [class.trophy-earned]="trophy.hasTrophy(game,t)">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 text-center">
+							<i class="fa-solid fa-trophy fa-2x"></i>
+						</div>
+						<ng-container *ngIf="trophy.hasTrophy(game,t); else notFound">
+							<div class="col">
+								<strong>{{ game+'.trophy.'+t | transloco |trophy:0 }}</strong>
+								<p class="mb-0">{{ game+'.trophy.'+t | transloco |trophy:1 }}</p>
+							</div>
+						</ng-container>
+						<ng-template #notFound>
+							<div class="col">
+								<strong>{{ 'trophy.unknown.title' | transloco }}</strong>
+								<p class="mb-0">{{ 'trophy.unknown.desc' | transloco }}</p>
+							</div>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</p-dialog>

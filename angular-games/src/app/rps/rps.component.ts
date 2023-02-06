@@ -224,10 +224,4 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 			}
 		}
 	}
-
-	showTrophiesModal: boolean = false;
-
-	toggleTrophies() {
-		this.showTrophiesModal = true;
-	}
 }

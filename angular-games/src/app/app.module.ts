@@ -9,7 +9,7 @@ import { AppConfigService } from "@app/services/config.service";
 import { ToastModule } from "primeng/toast";
 import { DialogModule } from "primeng/dialog";
 import { TrophyPipe } from "@app/pipes/trophy.pipe";
-
+import { TrophyComponent } from "@app/components/trophy/trophy.component";
 import { HomeComponent } from "@app/home/home.component";
 import { GameRpsComponent } from "@app/rps/rps.component";
 
@@ -24,7 +24,8 @@ export function appConfigInit(config:AppConfigService) {
 		AppComponent,
 		HomeComponent,
 		GameRpsComponent,
-		TrophyPipe
+		TrophyPipe,
+		TrophyComponent
 	],
 	imports: [
 		BrowserModule,

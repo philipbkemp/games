@@ -1,0 +1,35 @@
+@import "../../../assets/scss/colours.scss";
+@import "../../../assets/scss/buttons.scss";
+
+.card.trophy {
+	border: 1px solid $grey;
+	min-height: 75px;
+	.card-body {
+		padding: 0;
+		.row {
+			margin: 0;
+			> :first-child {
+				align-items: center;
+				background-color: $super-light-grey;
+				border-radius: .25rem 0 0 .25rem;
+				color: $grey;
+				display: flex;
+				min-height: 74px;
+				justify-content: center;
+			}
+			> :last-child {
+				color: $grey;
+			}
+		}
+	}
+	&.trophy-earned {
+		border-color: $success;
+		.card-body .row > :first-child {
+			background-color: $success-shadow;
+			color: $success;
+		}
+		.card-body .row > :last-child {
+			color: initial;
+		}
+	}
+}
