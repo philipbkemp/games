@@ -158,9 +158,10 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 		}
 
 		/* trophy check */
-		if ( this.gamesPlayed === 1 ) {
+		if ( this.userWins === 1 ) {
 			this.winTrophy("a");
-		} else if ( this.gamesPlayed === 50 ) {
+		}
+		if ( this.gamesPlayed === 50 ) {
 			this.winTrophy("i");
 		}
 		if ( this.resWin ) {
