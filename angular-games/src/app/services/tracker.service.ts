@@ -38,8 +38,8 @@ export class TrackerService implements OnDestroy {
 		let guest:any = this.cookie.cookieGet("pbk.guest") || null;
 		if ( ! guest ) {
 			guest = this.uniqid();
-			this.cookie.cookieSet("pbk.guest",guest);
 		}
+		this.cookie.cookieSet("pbk.guest",guest);
 	}
 
 	private doTrack(event:string,detail:string) {
