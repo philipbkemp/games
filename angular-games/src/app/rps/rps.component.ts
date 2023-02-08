@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppConfigService } from "@app/services/config.service";
 import { CookieService } from "@app/services/cookie.service";
 import { TRANSLOCO_SCOPE, TranslocoService } from "@ngneat/transloco";
-import { Title } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 import { TrophyService } from "@app/services/trophy.service";
 import { MessageService } from "primeng/api";
 import { TrackerService } from "@app/services/tracker.service";
@@ -55,13 +55,20 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 		public trophy: TrophyService,
 		private translate: TranslocoService,
 		private msg: MessageService,
-		private tracker: TrackerService
+		private tracker: TrackerService,
+		private meta: Meta
 	) {
 	}
 
 	ngOnInit() {
 		this.waitingUser = true;
+
 		this.titleService.setTitle("Phil's Angular Game Room | Rock Paper Scissors");
+		this.meta.updateTag({property:"og:title",content:"Rock Paper Scissors"});
+		this.meta.updateTag({property:"og:image",content:"https://philipbkemp.github.io/games/assets/og/rps.png"});
+		this.meta.updateTag({property:"og:url",content:"https://philipbkemp.github.io/games/rps"});
+		this.meta.updateTag({property:"og:description",content:"Play Rock Paper Scissors @ Phil's Game Room"});
+
 		this.showTrophiesModalButton = this.trophy.getTrophiesEarned("rps") !== 0;
 		this.tracker.trackPageView("/rps");
 	}
