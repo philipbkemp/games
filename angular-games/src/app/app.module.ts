@@ -11,7 +11,9 @@ import { DialogModule } from "primeng/dialog";
 import { TrophyPipe } from "@app/pipes/trophy.pipe";
 import { TrophyComponent } from "@app/components/trophy/trophy.component";
 import { HomeComponent } from "@app/home/home.component";
+
 import { GameRpsComponent } from "@app/rps/rps.component";
+import { GameRpslsComponent } from "@app/rpsls/rpsls.component";
 
 export function appConfigInit(config:AppConfigService) {
 	return() => {
@@ -23,9 +25,11 @@ export function appConfigInit(config:AppConfigService) {
 	declarations: [
 		AppComponent,
 		HomeComponent,
-		GameRpsComponent,
 		TrophyPipe,
-		TrophyComponent
+		TrophyComponent,
+
+		GameRpsComponent,
+		GameRpslsComponent
 	],
 	imports: [
 		BrowserModule,

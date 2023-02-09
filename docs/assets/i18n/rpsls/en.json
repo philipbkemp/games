@@ -1,0 +1,60 @@
+{
+	"ai": "The computer chose",
+	"choose": "Choose your weapon!",
+	"draw": "Draw: {{i}}",
+	"lizard": "Lizard",
+	"loss": "Loss: {{i}}",
+	"paper": "Paper",
+	"results": {
+		"draw": "Draw",
+		"lizard": {
+			"paper": "Lizsard eats Paper",
+			"rock": "Lizard crushed by Rock",
+			"scissors": "Lizard decapitated by Scissors",
+			"spock": "Lizard poisons Spock"
+		},
+		"paper": {
+			"lizard": "Paper is eaten by Lizard",
+			"rock": "Paper covers Rock",
+			"scissors": "Paper cut by Scissors",
+			"spock": "Paper disproves Spock"
+		},
+		"rock": {
+			"lizard": "Rock crushes Lizard",
+			"paper": "Rock covered by Paper",
+			"scissors": "Rock crushes Scissors",
+			"spock": "Rock vaporised by Spock"
+		},
+		"scissors": {
+			"lizard": "Scissors decapitate Lizard",
+			"paper": "Scissors cut Paper",
+			"rock": "Scissors crushed by Rock",
+			"spock": "Scissors smashed by Spock"
+		},
+		"spock": {
+			"lizard": "Spock poisoned by Lizard",
+			"paper": "Spcok disproved by Paper",
+			"rock": "Spock vaporises Rock",
+			"scissors": "Spock smashes Scissors"
+		}
+	},
+	"rock": "Rock",
+	"scissors": "Scissors",
+	"spock": "Spock",
+	"trophy": {
+		"a": "Schnick, Schnack, Schnuck Plus|Win Rock Paper Scissors Lizard Spock for the first time",
+		"b": "You Rock!|Win 5 games with Rock",
+		"c": "Papers Please|Win 5 games with Paper",
+		"d": "A Cut Above The Rest|Win 5 games with Scissors",
+		"e": "Starfleet's Finest|Quit Rock Paper Scissors Lizard Spock without losing",
+		"f": "On Fire!|Win 5 games in a row",
+		"g": "Not At My Best|Lose 5 games in a row",
+		"h": "Art Class|Draw 5 games in a row",
+		"i": "Long Term Student|Play 50 games",
+		"j": "Illogical Captain|Quit Rock Paper Scissors Lizard Spock because you lost every round",
+		"k": "Tipping the Scales|Win 5 games with Lizard",
+		"l": "Logical Approach|Win 5 games with Spock"
+	},
+	"user": "You chose",
+	"win": "Win: {{i}}"
+}

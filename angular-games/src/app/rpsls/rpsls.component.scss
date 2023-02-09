@@ -1,0 +1,59 @@
+@import "../../assets/scss/colours.scss";
+@import "../../assets/scss/buttons.scss";
+@import "../../assets/scss/game-cards.scss";
+
+.progress {
+	background-color: transparent;
+	font-size: 1rem;
+	height: 30px;
+}
+
+.bg-success {
+	background-color: $success !important;
+	color: white;
+}
+.bg-secondary {
+	background-color: $grey !important;
+	color: black;
+}
+.bg-danger {
+	background-color: $danger !important;
+	color: white;
+}
+
+.card-body.no-hover.ai-choice {
+	background: white !important;
+	.card-header {
+		background: white !important;
+	}
+}
+
+@media(max-width:520px) {
+    a.float-start,
+    button.float-end {
+        margin-bottom: 10px;
+        width: calc( 50% - 10px );
+    }
+    .fa-6x {
+        font-size: 3rem;
+    }
+    .card-header {
+    	align-items: center;
+    	display: flex;
+        font-size: 1.1rem !important;
+        justify-content: center;
+        min-height: 70px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.nextRound {
+	background-color: transparent;
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 999;
+}

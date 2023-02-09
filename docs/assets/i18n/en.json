@@ -2,6 +2,7 @@
 	"back": "Back",
 	"games": {
 		"rps": "Rock, Paper, Scissors",
+		"rpsls": "Rock, Paper, Scissors, Lizard, Spock",
 		"title": "Welcome to the game room!"
 	},
 	"trophies": "Trophies",

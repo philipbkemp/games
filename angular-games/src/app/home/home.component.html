@@ -6,7 +6,7 @@
 	</div>
 </div>
 <div class="container pt-5 pb-5">
-	<div class="row row-cols-1 row-cols-md-4 g-4">
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
 
 		<div class="col">
 			<div class="game-card card h-100">
@@ -18,13 +18,38 @@
 						<i class="fa-regular fa-hand-scissors fa-6x"></i>
 					</div>
 					<div class="card-trophy">
-						<div class="progress" *ngIf="trophies_rsp !== 0">
+						<div class="progress" *ngIf="trophies_rps !== 0">
 							<div
 								class="progress-bar"
 								role="progressbar" 
 								[attr.aria-label]="'games.rps' | transloco" 
-								[attr.style]="'width: '+trophies_rsp+'%'"
-								[attr.aria-valuenow]="trophies_rsp"
+								[attr.style]="'width: '+trophies_rps+'%'"
+								[attr.aria-valuenow]="trophies_rps"
+								aria-valuemin="0"
+								aria-valuemax="100"></div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<a class="card-body" [routerLink]="'rpsls'">
+					<div class="card-header">
+						{{ 'games.rpsls' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-spock fa-6x"></i>
+					</div>
+					<div class="card-trophy">
+						<div class="progress" *ngIf="trophies_rpsls !== 0">
+							<div
+								class="progress-bar"
+								role="progressbar" 
+								[attr.aria-label]="'games.rpsls' | transloco" 
+								[attr.style]="'width: '+trophies_rpsls+'%'"
+								[attr.aria-valuenow]="trophies_rpsls"
 								aria-valuemin="0"
 								aria-valuemax="100"></div>
 						</div>

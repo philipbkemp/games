@@ -5,7 +5,11 @@
 .card-trophy {
 	.progress {
 		background-color: transparent;
+		bottom: 0;
 		height: 3px;
+		left: 0;
+		position: absolute;
+		right: 0;
 		.progress-bar {
 			background-color: $blue;
 		}

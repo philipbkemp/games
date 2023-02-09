@@ -1,0 +1,193 @@
+<div class="container-fluid bg-blue">
+	<div class="row">
+		<div class="col-12 text-center py-4">
+			<a [routerLink]="'/'" class="btn btn-outline-primary float-start mt-2">
+				<i class="fa-solid fa-chevron-left me-1"></i> {{ 'back' | transloco }}
+			</a>
+			<app-trophy
+				[game]="'rpsls'"
+				[trophyList]="['a','b','c','d','k','l','e','f','g','h','i','j']"
+				[button]="showTrophiesModalButton"
+				></app-trophy>
+			<h1>{{ 'games.rpsls' | transloco }}</h1>
+		</div>
+	</div>
+</div>
+<div class="container pt-5 pb-5">
+
+	<div class="row pb-3" *ngIf="userWins!==0 || draws!==0 || aiWins!==0">
+		<div class="progress">
+			<div
+				class="progress-bar bg-success"
+				role="progressbar"
+				aria-label="User Wins"
+				[attr.style]="'width:'+((userWins/gamesPlayed)*100)+'%'"
+				[attr.aria-valuenow]="userWins/gamesPlayed"
+				aria-valuemin="0"
+				aria-valuemax="100"><span *ngIf="userWins > 0">
+					<span class="d-none d-md-block">{{ 'rpsls.win' | transloco: {i:userWins} }}</span>
+					<span class="d-block d-md-none">{{ userWins }}</span>
+				</span></div>
+			<div
+				class="progress-bar bg-secondary"
+				role="progressbar"
+				aria-label="Draws"
+				[attr.style]="'width:'+((draws/gamesPlayed)*100)+'%'"
+				[attr.aria-valuenow]="draws/gamesPlayed"
+				aria-valuemin="0"
+				aria-valuemax="100"><span *ngIf="draws > 0">
+					<span class="d-none d-md-block">{{ 'rpsls.draw' | transloco: {i:draws} }}</span>
+					<span class="d-block d-md-none">{{ draws }}</span>
+				</span></div>
+			<div
+				class="progress-bar bg-danger"
+				role="progressbar"
+				aria-label="User Defeats"
+				[attr.style]="'width:'+((aiWins/gamesPlayed)*100)+'%'"
+				[attr.aria-valuenow]="aiWins/gamesPlayed"
+				aria-valuemin="0"
+				aria-valuemax="100"><span *ngIf="aiWins > 0">
+					<span class="d-none d-md-block">{{ 'rpsls.loss' | transloco: {i:aiWins} }}</span>
+					<span class="d-block d-md-none">{{ aiWins }}</span>
+				</span></div>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="waitingUser">
+
+		<div class="col-12">
+			<p [innerHtml]="'rpsls.choose'|transloco" class="lead"></p>
+			<hr />
+		</div>
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<button class="card-body" (click)="userChoose(ROCK)">
+					<div class="card-header">
+						{{ 'rpsls.rock' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-back-fist fa-6x"></i>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<button class="card-body" (click)="userChoose(PAPER)">
+					<div class="card-header">
+						{{ 'rpsls.paper' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand fa-6x"></i>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<button class="card-body" (click)="userChoose(SCISSORS)">
+					<div class="card-header">
+						{{ 'rpsls.scissors' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-scissors fa-6x"></i>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<button class="card-body" (click)="userChoose(LIZARD)">
+					<div class="card-header">
+						{{ 'rpsls.lizard' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-lizard fa-6x"></i>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="game-card card h-100">
+				<button class="card-body" (click)="userChoose(SPOCK)">
+					<div class="card-header">
+						{{ 'rpsls.spock' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-spock fa-6x"></i>
+					</div>
+				</button>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row" *ngIf="!waitingUser">
+		<div class="nextRound" (click)="nextRound()"></div>
+		<div class="col-6">
+			<div class="game-card card h-100">
+				<div class="card-body no-hover">
+					<div class="card-header">
+						{{ 'rpsls.user' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-back-fist fa-6x" *ngIf="userChoice===ROCK"></i>
+						<i class="fa-regular fa-hand fa-6x" *ngIf="userChoice===PAPER"></i>
+						<i class="fa-regular fa-hand-scissors fa-6x" *ngIf="userChoice===SCISSORS"></i>
+						<i class="fa-regular fa-hand-lizard fa-6x" *ngIf="userChoice===LIZARD"></i>
+						<i class="fa-regular fa-hand-spock fa-6x" *ngIf="userChoice===SPOCK"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="game-card card h-100">
+				<div class="card-body no-hover ai-choice">
+					<div class="card-header">
+						{{ 'rpsls.ai' | transloco }}
+					</div>
+					<div class="card-text">
+						<i class="fa-regular fa-hand-back-fist fa-6x" *ngIf="aiChoice===ROCK"></i>
+						<i class="fa-regular fa-hand fa-6x" *ngIf="aiChoice===PAPER"></i>
+						<i class="fa-regular fa-hand-scissors fa-6x" *ngIf="aiChoice===SCISSORS"></i>
+						<i class="fa-regular fa-hand-lizard fa-6x" *ngIf="aiChoice===LIZARD"></i>
+						<i class="fa-regular fa-hand-spock fa-6x" *ngIf="aiChoice===SPOCK"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 text-center fa-2x mt-2">
+			<div
+				class="alert"
+				[class.bg-success]="resWin"
+				[class.bg-danger]="resLose"
+				[class.bg-secondary]="resDraw"
+				>
+				<span *ngIf="userChoice === aiChoice">{{ 'rpsls.results.draw' | transloco }}</span>
+				<span *ngIf="userChoice !== aiChoice">{{ 'rpsls.results.'+choiceToString(userChoice)+"."+choiceToString(aiChoice) | transloco }}</span>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<p-toast position="top-center">
+	<ng-template let-message pTemplate="message">
+        <div class="flex flex-column" style="flex: 1">
+            <div class="row">
+            	<div class="col-3 text-center">
+                	<i class="fa-solid fa-trophy fa-3x"></i>
+                </div>
+                <div class="col">
+                	<h4>{{message.summary}}</h4>
+                	<p class="mb-0">{{message.detail}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

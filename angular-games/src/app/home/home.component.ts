@@ -14,7 +14,8 @@ import { TrackerService } from "@app/services/tracker.service";
 })
 export class HomeComponent implements OnInit {
 
-	trophies_rsp: number = 0;
+	trophies_rps: number = 0;
+	trophies_rpsls: number = 0;
 
 	constructor(
 		private config: AppConfigService,
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	getTrophies() {
-		this.trophies_rsp = (this.trophy.getTrophiesEarned("rps") / 10)*100;
+		this.trophies_rps = (this.trophy.getTrophiesEarned("rps") / 10)*100;
+		this.trophies_rpsls = (this.trophy.getTrophiesEarned("rpsls") /12) *100;
 	}
 }
