@@ -175,23 +175,19 @@ export class GameRpsComponent implements OnInit, OnDestroy {
 			this.winStreak++;
 			this.drawStreak = 0;
 			this.loseStreak = 0;
-			if ( this.userChoice === this.ROCK ) {
-				this.rockWins++;
-				if ( this.rockWins === 5 ) {
-					this.winTrophy("b");
-				}
-			}
-			if ( this.userChoice === this.PAPER ) {
-				this.paperWins++;
-				if ( this.paperWins === 5 ) {
-					this.winTrophy("c");
-				}
-			}
-			if ( this.userChoice === this.SCISSORS ) {
-				this.scissorWins++;
-				if ( this.scissorWins === 5 ) {
-					this.winTrophy("d");
-				}
+			switch ( this.userChoice ) {
+				case this.ROCK:
+					this.rockWins++;
+					if ( this.rockWins === 5 ) { this.winTrophy("b"); }
+					break;
+				case this.PAPER:
+					this.paperWins++;
+					if ( this.paperWins === 5 ) { this.winTrophy("c"); }
+					break;
+				case this.SCISSORS:
+					this.scissorWins++;
+					if ( this.scissorWins === 5 ) { this.winTrophy("d"); }
+					break;
 			}
 			if ( this.winStreak === 5 ) {
 				this.winTrophy("f");
